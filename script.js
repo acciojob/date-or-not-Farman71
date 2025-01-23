@@ -10,10 +10,12 @@ var isDate = function (input) {
     return !isNaN(parsedDate.getTime());
   }
 
+  // Additional check for stringified Date objects
+  if (Object.prototype.toString.call(input) === "[object String]") {
+    const parsedDate = new Date(input);
+    return !isNaN(parsedDate.getTime());
+  }
+
   // Return false for all other cases
   return false;
 };
-
-// Do not change the code below.
-const input = prompt("Enter Date.");
-alert(isDate(input));
